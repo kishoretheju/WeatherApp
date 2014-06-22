@@ -1,5 +1,5 @@
 //
-//  KTMViewController.h
+//  KTMDetailWeatherViewController.h
 //  WeatherApp
 //
 //  Created by Kishore Thejasvi on 22/06/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KTMViewController : UIViewController
+@interface KTMDetailWeatherViewController : UIViewController
+
+- (void) setData: (NSDictionary *)data;
 
 @end

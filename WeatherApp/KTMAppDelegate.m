@@ -7,15 +7,36 @@
 //
 
 #import "KTMAppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation KTMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [self findDeviceLocation];
     return YES;
 }
-							
+
+- (NSString *) findDeviceLocation {
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
+    
+    NSNumber *latitude = [NSNumber numberWithFloat:locationManager.location.coordinate.latitude];
+    NSNumber *longitude = [NSNumber numberWithFloat:locationManager.location.coordinate.longitude];
+    
+    if ([latitude integerValue] == 0 && [longitude integerValue] == 0) {
+        latitude = [NSNumber numberWithFloat:12.9667];
+        longitude = [NSNumber numberWithFloat:77.5667];
+    }
+    
+    NSString *location = [NSString stringWithFormat:@"%@,%@", latitude, longitude];
+    return location;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
