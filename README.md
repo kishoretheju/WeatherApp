@@ -1,4 +1,2 @@
-WeatherAoo
-==========
-
+WeatherApp
 Weather App
